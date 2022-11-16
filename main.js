@@ -18,7 +18,7 @@ const grid = document.getElementById('grid');
 let isJumpingAlready = false;
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  const jack = new Dino(400);
+  const jack = new Dino(350);
 
   // listen for jump events
   document.addEventListener('keydown', (evt) => {
