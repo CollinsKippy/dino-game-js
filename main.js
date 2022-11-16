@@ -14,12 +14,14 @@ class Dino {
 }
 
 const dinoDiv = document.getElementById('dino');
+const grid = document.getElementById('grid');
 let isJumpingAlready = false;
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  const jack = new Dino(300);
+  const jack = new Dino(400);
 
-  document.addEventListener('keyup', (evt) => {
+  // listen for jump events
+  document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
     if (evt.key === ' ') {
       if (!isJumpingAlready) {
@@ -42,10 +44,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                 isJumpingAlready = false;
               }
-            }, 10);
+            }, 12);
           }
-        }, 5);
+        }, 8);
       }
     }
   });
+
+  // create obstacles
+  const obstacle = document.createElement('div');
+  obstacle.classList.add('obstacle');
+  grid.appendChild(obstacle);
+
+  let rightMargin = 0;
+  const obstacleInterval = setInterval(() => {
+    rightMargin += 10;
+    obstacle.style.right = rightMargin + 'px';
+  }, 30);
 });

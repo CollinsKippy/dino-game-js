@@ -22,7 +22,17 @@ h1 {
   position: absolute;
   bottom: 0;
   left: 24px;
-  width: 72px;
+  width: 42px;
   height: 72px;
-  background-color: orange;
+  background-color: rgb(81, 255, 0);
+}
+
+.obstacle {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 42px;
+  height: 72px;
+  background-color: rgb(169, 23, 23);
 }
