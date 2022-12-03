@@ -13,6 +13,8 @@ const dinoDiv = document.getElementById('dino');
 const gridDiv = document.getElementById('grid');
 
 let myDino;
+const duration = 20;
+const increment = 3;
 
 class ModernDino {
   constructor(yLocation, maxYLocation) {
@@ -25,21 +27,21 @@ class ModernDino {
       console.log('no element in jump();');
       return;
     }
-    const jumpInterval$ = interval(20);
-    const descendInterval$ = interval(20);
+    const jumpInterval$ = interval(duration);
+    const descendInterval$ = interval(duration);
     jumpInterval$
       .pipe(
         map((integer) => {
-          this.yLocation += integer * 20;
-          element.style.bottom = `${this.yLocation}px`;
+          this.yLocation += increment;
+          element.style.bottom = `${this.yLocation}rem`;
           console.log(this.yLocation);
         }),
         takeWhile(() => this.yLocation < this.maxYLocation),
         concatWith(
           descendInterval$.pipe(
             map((integer) => {
-              this.yLocation -= integer * 20;
-              element.style.bottom = `${this.yLocation}px`;
+              this.yLocation -= increment;
+              element.style.bottom = `${this.yLocation}rem`;
             }),
             takeWhile(() => this.yLocation > 0)
           )
@@ -61,7 +63,7 @@ const domObserver = {
 domLoads$.pipe(catchError((err) => of(err))).subscribe(domObserver);
 
 function domSuccess(domEvent) {
-  myDino = new ModernDino(0, 200);
+  myDino = new ModernDino(0, 20);
 }
 
 function domError(error) {
