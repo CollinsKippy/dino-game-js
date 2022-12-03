@@ -48,21 +48,6 @@ class ModernDino {
       )
       .subscribe(console.log);
   }
-
-  descend(element) {
-    if (!element) {
-      console.log('no element in descend();');
-      return;
-    }
-    const descendInterval$ = interval(20);
-    descendInterval$.pipe(catchError((err) => of(err))).subscribe((x) => {
-      if (this.yLocation >= this.maxYLocation) {
-        this.yLocation -= 20;
-        this.yLocation += 20;
-        element.style.bottom = `${this.yLocation}px`;
-      }
-    });
-  }
 }
 
 // DOM CONTENT LOADED
